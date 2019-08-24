@@ -1,14 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Login } from '../models/genealModels.model';
-import * as jwt_decode from 'jwt-decode';
-
 @Injectable({
   providedIn: 'root'
 })
 export class RequestsService {
+  public perfil: any;
+  public perfilVO = new BehaviorSubject(this.perfil);
+  public currentPerfil = this.perfilVO.asObservable();
+  public id: any;
+  public idVo = new BehaviorSubject(this.id);
+  public currentId = this.idVo.asObservable();
+
   constructor(private http: HttpClient) {}
+  public atualizaPerfilaAtual(perfil: any) {
+    this.perfilVO.next(perfil);
+  }
+  public idUser(id: any) {
+    const idUserLocal = localStorage.getItem('champId');
+    if (idUserLocal === undefined || idUserLocal === null) {
+      localStorage.setItem('champId', btoa(id));
+      if (idUserLocal !== undefined || idUserLocal !== null) {
+        console.log('Console log local', idUserLocal);
+      }
+    } else if (idUserLocal !== undefined || idUserLocal !== null) {
+      localStorage.removeItem('champId');
+      localStorage.setItem('champId', btoa(id));
+    }
+    // this.idVo.next(d);
+  }
   /**
    * Login
    */
@@ -30,7 +51,7 @@ export class RequestsService {
   public cadastro(body: any): Observable<any> {
     return this.http.post('http://127.0.0.1:3333/api/v1/registrar', body);
   }
-  public obterCadastro(id: number) {
+  public obterCadastro(id?: number) {
     return this.http.get(`http://127.0.0.1:3333/api/v1/user/${id}`);
   }
 }

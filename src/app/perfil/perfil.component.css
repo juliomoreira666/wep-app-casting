@@ -1,0 +1,11 @@
+.margin-reset {
+  margin: 0px !important;
+}
+
+#perfil {
+  background: #ffffff;
+}
+
+input[type='file'] {
+  color: transparent;
+}

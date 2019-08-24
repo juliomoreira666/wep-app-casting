@@ -14,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from '../app/components/cadastro/cadastro.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,12 @@ import { PerfilComponent } from './perfil/perfil.component';
     CadastroComponent,
     PerfilComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgxSpinnerModule
+  ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
 })
