@@ -1,0 +1,11 @@
+.login_btn {
+  width: 100% !important;
+}
+
+.cadastro-sucesso {
+  font-size: 12px;
+  margin-top: 10px;
+  height: 50px;
+  float: left;
+  text-align: center;
+}

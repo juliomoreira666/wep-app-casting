@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-7">
+      <img class="img-fluid" src="./../../../assets/img/logo-ritch.png" />
+    </div>
+  </div>
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Cadastro</h3>
+      </div>
+      <div class="card-body">
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-at"></i></span>
+          </div>
+          <input
+            (input)="cadastroJson.email = $event.target.value"
+            type="text"
+            class="form-control"
+            placeholder="fulano@fulano.com.br"
+          />
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-at"></i></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Digite novamente seu e-mail"
+          />
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>
+          <input
+            (input)="cadastroJson.password = $event.target.value"
+            type="password"
+            class="form-control"
+            placeholder="senha"
+          />
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"
+              ><i class="fas fa-address-card"></i
+            ></span>
+          </div>
+          <input
+            (input)="cadastroJson.nome = $event.target.value"
+            type="text"
+            class="form-control"
+            placeholder="Nome"
+          />
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"
+              ><i class="fas fa-address-book"></i
+            ></span>
+          </div>
+          <input
+            (input)="cadastroJson.sobrenome = $event.target.value"
+            type="text"
+            class="form-control"
+            placeholder="Sobrenome"
+          />
+        </div>
+        <div class="form-group">
+          <button
+            (click)="cadastrar()"
+            value="Login"
+            class="btn float-right login_btn"
+          >
+            Cadastrar
+          </button>
+          <div
+            *ngIf="successCadastro"
+            class="col-12 alert alert-success cadastro-sucesso"
+            role="alert"
+          >
+            <span class="align-middle">
+              Cadastro Realizado com sucesso!
+              <a [routerLink]="['/login']">Efetue o login!</a></span
+            >
+          </div>
+          <div
+            *ngIf="errorCadastro"
+            class="col-12 alert alert-danger cadastro-sucesso"
+            role="alert"
+          >
+            <span class="align-middle"> Erro ao tentar cadastrar usuário!</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          Já possui uma conta?<a [routerLink]="['/login']">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

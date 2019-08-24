@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-md-7">
+      <img class="img-fluid" src="./../../../assets/img/logo-ritch.png" />
+    </div>
+  </div>
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Login</h3>
+      </div>
+      <div class="card-body">
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-at"></i></span>
+          </div>
+          <input
+            (input)="loginJson.email = $event.target.value"
+            type="text"
+            class="form-control"
+            placeholder="email"
+          />
+        </div>
+        <div class="input-group form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+          </div>
+          <input
+            (input)="loginJson.password = $event.target.value"
+            type="password"
+            class="form-control"
+            placeholder="senha"
+          />
+        </div>
+        <div class="row align-items-center remember">
+          <!--  <input type="checkbox" />Lembrar Minha Conta -->
+        </div>
+        <div class="form-group">
+          <button
+            (click)="login()"
+            value="Login"
+            class="btn float-right login_btn"
+          >
+            Login
+          </button>
+          <div
+            *ngIf="successLogin"
+            class="col-12 alert alert-success cadastro-sucesso"
+            role="alert"
+          >
+            <span class="align-middle">
+              Login Realizado com sucesso! Redirecionando...
+            </span>
+          </div>
+          <div
+            *ngIf="errorLogin"
+            class="col-12 alert alert-danger cadastro-sucesso"
+            role="alert"
+          >
+            <span class="align-middle"> E-mail ou senha incorreto</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          Ainda não possui uma conta?<a [routerLink]="['/cadastro']"
+            >Cadastrar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
