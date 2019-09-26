@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Login } from '../models/genealModels.model';
+import { environment } from './../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +39,7 @@ export class RequestsService {
       .set('email', login.email)
       .set('password', login.password);
     return this.http.post(
-      'http://127.0.0.1:3333/api/v1/login',
+      `${environment.API_URL}/api/v1/login`,
       body.toString(),
       {
         headers: new HttpHeaders().set(
@@ -49,9 +50,26 @@ export class RequestsService {
     );
   }
   public cadastro(body: any): Observable<any> {
-    return this.http.post('http://127.0.0.1:3333/api/v1/registrar', body);
+    return this.http.post(`${environment.API_URL}/api/v1/registrar`, body);
   }
   public obterCadastro(id?: number) {
-    return this.http.get(`http://127.0.0.1:3333/api/v1/user/${id}`);
+    return this.http.get(`${environment.API_URL}/api/v1/user/${id}`);
+  }
+  uploadImg(base64: string): Observable<any> {
+    let headers = new HttpHeaders();
+    // headers = headers.append('Authorization', 'Client-ID ' + 'eeb1c5919e02c00');
+    headers = headers.append(
+      'Content-Type',
+      'application/x-www-form-urlencoded'
+    );
+    headers = headers.append('Access-Control-Allow-Origin', '*');
+    const body = new HttpParams().set('image', base64);
+    return this.http.post(
+      `https://api.imgbb.com/1/upload?key=${'71e640dcf068ff0cdba57ddb8670945e'}`,
+      body.toString(),
+      {
+        headers
+      }
+    );
   }
 }

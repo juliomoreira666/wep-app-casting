@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class PerfilComponent implements OnInit {
   perfil: Perfil;
   loadContent: boolean;
+  image: string;
   idUser: any;
   perfilStorage: any;
   constructor(
@@ -44,6 +45,32 @@ export class PerfilComponent implements OnInit {
         setTimeout(() => {
           this.spinner.hide();
         }, 4000);
+      }
+    );
+  }
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
+  readThis(inputValue: any): void {
+    let file: File = inputValue.files[0];
+    let myReader: FileReader = new FileReader();
+    myReader.onloadend = e => {
+      const base64Data = myReader.result;
+      const base64string = base64Data.toString();
+      const base64result = base64string.split(',')[1];
+      this.image = base64result;
+      console.log('Imagem upload', base64result);
+      this.uploadImg(this.image);
+    };
+    myReader.readAsDataURL(file);
+  }
+  uploadImg(b64: string) {
+    this.serviceComp.uploadImg(b64).subscribe(
+      data => {
+        console.log('IMAGEM', data);
+      },
+      error => {
+        console.log(error);
       }
     );
   }

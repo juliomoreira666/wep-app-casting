@@ -17,12 +17,17 @@
                 alt="avatar"
               />
               <h6>Inserir uma imagem diferente</h6>
-              <input type="file" class="text-center center-block file-upload" />
+              <input
+                type="file"
+                accept="image/*"
+                (change)="changeListener($event)"
+                class="text-center center-block file-upload"
+              />
             </div>
             <br />
           </div>
           <!--/col-3-->
-          <div class="col-sm-9">
+          <div class="col-sm-9 padding-reset">
             <div class="tab-content">
               <div class="tab-pane active" id="home">
                 <hr />
@@ -32,9 +37,125 @@
                   method="post"
                   id="registrationForm"
                 >
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="first_name"><h4>Nome</h4></label>
+                  <div class="form-group row margin-reset">
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Nome</label>
+                      <input
+                        [value]="perfil.nome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Sobrenome</label>
+                      <input
+                        [value]="perfil.sobrenome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Sexo</label>
+                      <select class="form-control">
+                        <option>
+                          Selecione
+                        </option>
+                        <option>
+                          Masculino
+                        </option>
+                        <option>
+                          Feminino
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row margin-reset">
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Data de Nascimento</label>
+                      <input
+                        [value]="perfil.nome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Nome Pai Completo</label>
+                      <input
+                        [value]="perfil.sobrenome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Nome Mãe Completo</label>
+                      <input
+                        [value]="perfil.sobrenome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row margin-reset">
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Celular</label>
+                      <input
+                        [value]="perfil.nome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Telefone</label>
+                      <input
+                        [value]="perfil.nome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group row margin-reset">
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">RG</label>
+                      <input
+                        [value]="perfil.nome"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                        placeholder="first name"
+                        title="enter your first name if any."
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">CPF</label>
                       <input
                         [value]="perfil.nome"
                         type="text"
@@ -47,102 +168,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="last_name"><h4>Sobrenome</h4></label>
-                      <input
-                        [value]="perfil.sobrenome"
-                        type="text"
-                        class="form-control"
-                        name="last_name"
-                        id="last_name"
-                        placeholder="last name"
-                        title="enter your last name if any."
-                      />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="phone"><h4>Phone</h4></label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="phone"
-                        id="phone"
-                        placeholder="enter phone"
-                        title="enter your phone number if any."
-                      />
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="mobile"><h4>Mobile</h4></label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        name="mobile"
-                        id="mobile"
-                        placeholder="enter mobile number"
-                        title="enter your mobile number if any."
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="email"><h4>Email</h4></label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        id="email"
-                        placeholder="you@email.com"
-                        title="enter your email."
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="email"><h4>Location</h4></label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        id="location"
-                        placeholder="somewhere"
-                        title="enter a location"
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="password"><h4>Password</h4></label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        name="password"
-                        id="password"
-                        placeholder="password"
-                        title="enter your password."
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-xs-6">
-                      <label for="password2"><h4>Verify</h4></label>
-                      <input
-                        type="password"
-                        class="form-control"
-                        name="password2"
-                        id="password2"
-                        placeholder="password2"
-                        title="enter your password2."
-                      />
-                    </div>
-                  </div>
-                  <div class="form-group">
                     <div class="col-xs-12">
                       <br />
-                      <button class="btn btn-lg btn-success" type="submit">
+                      <button class="btn btn-lg btn-success">
                         <i class="glyphicon glyphicon-ok-sign"></i> Atualizar
                         cadastro
                       </button>

@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from '../app/components/cadastro/cadastro.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
