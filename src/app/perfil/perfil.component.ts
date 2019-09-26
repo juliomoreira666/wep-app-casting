@@ -13,7 +13,7 @@ export class PerfilComponent implements OnInit {
   loadContent: boolean;
   image: string;
   idUser: any;
-  perfilStorage: any;
+  perfilStorage = new Perfil();
   constructor(
     private serviceComp: RequestsService,
     private spinner: NgxSpinnerService
@@ -73,5 +73,19 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  attCadastro(): void {
+    console.log('TESTE', this.perfilStorage);
+    this.serviceComp
+      .atualizarCadastro(this.perfilStorage, this.idUser)
+      .subscribe(
+        (data: any) => {
+          this.populaPerfilVo();
+          console.log(data);
+        },
+        (error: any) => {
+          console.error(error);
+        }
+      );
   }
 }

@@ -52,6 +52,9 @@ export class RequestsService {
   public cadastro(body: any): Observable<any> {
     return this.http.post(`${environment.API_URL}/api/v1/registrar`, body);
   }
+  public atualizarCadastro(body: any, id: number): Observable<any> {
+    return this.http.put(`${environment.API_URL}/api/v1/user/${id}`, body);
+  }
   public obterCadastro(id?: number) {
     return this.http.get(`${environment.API_URL}/api/v1/user/${id}`);
   }

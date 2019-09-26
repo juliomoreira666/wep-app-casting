@@ -30,17 +30,14 @@
           <div class="col-sm-9 padding-reset">
             <div class="tab-content">
               <div class="tab-pane active" id="home">
+                <h5><strong>Dados Pessoais</strong></h5>
                 <hr />
-                <form
-                  class="form"
-                  action="##"
-                  method="post"
-                  id="registrationForm"
-                >
+                <form class="form" id="registrationForm">
                   <div class="form-group row margin-reset">
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Nome</label>
                       <input
+                        (input)="perfilStorage.nome = $event.target.value"
                         [value]="perfil.nome"
                         type="text"
                         class="form-control"
@@ -53,6 +50,7 @@
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Sobrenome</label>
                       <input
+                        (input)="perfilStorage.sobrenome = $event.target.value"
                         [value]="perfil.sobrenome"
                         type="text"
                         class="form-control"
@@ -64,47 +62,49 @@
                     </div>
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Sexo</label>
-                      <select class="form-control">
-                        <option>
-                          Selecione
-                        </option>
-                        <option>
-                          Masculino
-                        </option>
-                        <option>
-                          Feminino
-                        </option>
-                      </select>
+                      <input
+                      (input)="perfilStorage.sexo = $event.target.value"
+                      [value]="perfil.sexo"
+                      type="text"
+                      class="form-control"
+                      name="first_name"
+                      id="first_name"
+                      placeholder="Nome Pai"
+                    />
                     </div>
                   </div>
                   <div class="form-group row margin-reset">
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Data de Nascimento</label>
                       <input
-                        [value]="perfil.nome"
+                        (input)="
+                          perfilStorage.dataDeNascimento = $event.target.value
+                        "
+                        [value]="perfil.dataDeNascimento"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
                         placeholder="first name"
-                        title="enter your first name if any."
+                        title="Data de nascimento"
                       />
                     </div>
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Nome Pai Completo</label>
                       <input
-                        [value]="perfil.sobrenome"
+                        (input)="perfilStorage.nomePai = $event.target.value"
+                        [value]="perfil.nomePai"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
-                        placeholder="first name"
-                        title="enter your first name if any."
+                        placeholder="Nome Pai"
                       />
                     </div>
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Nome Mãe Completo</label>
                       <input
+                        (input)="perfilStorage.nomeMae = $event.target.value"
                         [value]="perfil.sobrenome"
                         type="text"
                         class="form-control"
@@ -119,25 +119,24 @@
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Celular</label>
                       <input
-                        [value]="perfil.nome"
+                        (input)="perfilStorage.celular = $event.target.value"
+                        [value]="perfil.celular"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
-                        placeholder="first name"
-                        title="enter your first name if any."
+                        placeholder="Celular"
                       />
                     </div>
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">Telefone</label>
                       <input
-                        [value]="perfil.nome"
+                        (input)="perfilStorage.telefone = $event.target.value"
+                        [value]="perfil.telefone"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
-                        placeholder="first name"
-                        title="enter your first name if any."
                       />
                     </div>
                   </div>
@@ -145,35 +144,434 @@
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">RG</label>
                       <input
-                        [value]="perfil.nome"
+                        (input)="perfilStorage.rg = $event.target.value"
+                        [value]="perfil.rg"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
-                        placeholder="first name"
-                        title="enter your first name if any."
                       />
                     </div>
                     <div class="col-xs-4 padding-form">
                       <label for="first_name">CPF</label>
                       <input
-                        [value]="perfil.nome"
+                        (input)="perfilStorage.cpf = $event.target.value"
+                        [value]="perfil.cpf"
                         type="text"
                         class="form-control"
                         name="first_name"
                         id="first_name"
-                        placeholder="first name"
-                        title="enter your first name if any."
                       />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Nacionalidade</label>
+                      <input
+                        (input)="
+                          perfilStorage.nacionalidade = $event.target.value
+                        "
+                        [value]="perfil.nacionalidade"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Naturalidade</label>
+                      <input
+                        (input)="
+                          perfilStorage.naturalidade = $event.target.value
+                        "
+                        [value]="perfil.naturalidade"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">CEP</label>
+                      <input
+                        (input)="perfilStorage.cep = $event.target.value"
+                        [value]="perfil.cep"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Estado</label>
+                      <input
+                        (input)="perfilStorage.estado = $event.target.value"
+                        [value]="perfil.estado"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Cidade</label>
+                      <input
+                        (input)="perfilStorage.cidade = $event.target.value"
+                        [value]="perfil.cidade"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Bairro</label>
+                      <input
+                        (input)="perfilStorage.bairro = $event.target.value"
+                        [value]="perfil.bairro"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Endereço</label>
+                      <input
+                        (input)="perfilStorage.endereco = $event.target.value"
+                        [value]="perfil.endereco"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Numero</label>
+                      <input
+                        (input)="perfilStorage.numero = $event.target.value"
+                        [value]="perfil.numero"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Complemento</label>
+                      <input
+                        (input)="
+                          perfilStorage.complemento = $event.target.value
+                        "
+                        [value]="perfil.complemento"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Facebook</label>
+                      <input
+                        (input)="perfilStorage.facebook = $event.target.value"
+                        [value]="perfil.facebook"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Instagran</label>
+                      <input
+                        (input)="perfilStorage.instagram = $event.target.value"
+                        [value]="perfil.instagram"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Site</label>
+                      <input
+                        (input)="perfilStorage.site = $event.target.value"
+                        [value]="perfil.site"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-4 padding-form">
+                      <label for="first_name">Youtube</label>
+                      <input
+                        (input)="perfilStorage.youTube = $event.target.value"
+                        [value]="perfil.youTube"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Banco</label>
+                      <input
+                        (input)="perfilStorage.banco = $event.target.value"
+                        [value]="perfil.banco"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Agência</label>
+                      <input
+                        (input)="perfilStorage.agencia = $event.target.value"
+                        [value]="perfil.agencia"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Conta</label>
+                      <input
+                        (input)="perfilStorage.conta = $event.target.value"
+                        [value]="perfil.conta"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Tipo de conta</label>
+                      <input
+                        (input)="
+                          perfilStorage.tipoDeConta = $event.target.value
+                        "
+                        [value]="perfil.tipoDeConta"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Favorecido</label>
+                      <input
+                        (input)="
+                          perfilStorage.tipoDeConta = $event.target.value
+                        "
+                        [value]="perfil.tipoDeConta"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Trabalha com Figuração?</label>
+                      <input
+                        (input)="
+                          perfilStorage.trabalhaComFiguracao =
+                            $event.target.value
+                        "
+                        [value]="perfil.trabalhaComFiguracao"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-xs-2 padding-form">
+                      <label for="first_name">Número do DRT</label>
+                      <input
+                        (input)="perfilStorage.drt = $event.target.value"
+                        [value]="perfil.drt"
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        id="first_name"
+                      />
+                    </div>
+                    <div class="col-12" style="margin-top: 1em;">
+                      <h5><strong>Caracteristicas</strong></h5>
+                      <hr />
+                      <div class="col-4 padding-form padding-reset">
+                        <label for="first_name">Altura</label>
+                        <input
+                          (input)="perfilStorage.altura = $event.target.value"
+                          [value]="perfil.altura"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4 padding-form padding-reset">
+                        <label for="first_name">Peso</label>
+                        <input
+                          (input)="perfilStorage.peso = $event.target.value"
+                          [value]="perfil.peso"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Manequim</label>
+                        <input
+                          (input)="perfilStorage.manequim = $event.target.value"
+                          [value]="perfil.manequim"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4 padding-form padding-reset">
+                        <label for="first_name">Quadril</label>
+                        <input
+                          (input)="perfilStorage.quadril = $event.target.value"
+                          [value]="perfil.quadril"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Busto</label>
+                        <input
+                          (input)="perfilStorage.busto = $event.target.value"
+                          [value]="perfil.busto"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Cintura</label>
+                        <input
+                          (input)="perfilStorage.cintura = $event.target.value"
+                          [value]="perfil.cintura"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Camisa</label>
+                        <input
+                          (input)="perfilStorage.camisa = $event.target.value"
+                          [value]="perfil.camisa"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Terno</label>
+                        <input
+                          (input)="perfilStorage.terno = $event.target.value"
+                          [value]="perfil.terno"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Calçado</label>
+                        <input
+                          (input)="perfilStorage.calcado = $event.target.value"
+                          [value]="perfil.calcado"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Cor dos Olhos</label>
+                        <input
+                          (input)="
+                            perfilStorage.corDosOlhos = $event.target.value
+                          "
+                          [value]="perfil.corDosOlhos"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Cor da pele</label>
+                        <input
+                          (input)="perfilStorage.pele = $event.target.value"
+                          [value]="perfil.pele"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Cor do Cabelo </label>
+                        <input
+                          (input)="
+                            perfilStorage.cordoCabelo = $event.target.value
+                          "
+                          [value]="perfil.cordoCabelo"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <div class="col-4  padding-form padding-reset">
+                        <label for="first_name">Tipo de Cabelo </label>
+                        <input
+                          (input)="
+                            perfilStorage.tipoDeCabelo = $event.target.value
+                          "
+                          [value]="perfil.tipoDeCabelo"
+                          type="text"
+                          class="form-control"
+                          name="first_name"
+                          id="first_name"
+                        />
+                      </div>
+                      <h5 style="margin-top: 1em;">
+                        <strong>Conte um pouco mais sobre você</strong>
+                      </h5>
+                      <hr />
+                      <div class="col-12">
+                        <textarea
+                          style="width: 100%; height: 500px;"
+                          (input)="
+                            perfilStorage.curriculo = $event.target.value
+                          "
+                          name="cs"
+                          [value]="perfil.curriculo"
+                        ></textarea>
+                      </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-xs-12">
                       <br />
-                      <button class="btn btn-lg btn-success">
+                      <a (click)="attCadastro()" class="btn btn-lg btn-success">
                         <i class="glyphicon glyphicon-ok-sign"></i> Atualizar
                         cadastro
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </form>
