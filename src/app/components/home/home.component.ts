@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private getall: RequestsService) {}
 
   ngOnInit() {
-    this.getAll();
+    // this.getAll();
   }
   getAll() {
     this.getall.getAll().subscribe(
