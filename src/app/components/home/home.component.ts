@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
     this.getall.getAll().subscribe(
       (data: any) => {
         this.all = data;
-        console.log(data);
       },
       error => {
         console.error(error);
