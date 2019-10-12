@@ -59,20 +59,22 @@ export class RequestsService {
     return this.http.get(`${environment.API_URL}/api/v1/user/${id}`);
   }
   uploadImg(base64: string): Observable<any> {
-    let headers = new HttpHeaders();
     // headers = headers.append('Authorization', 'Client-ID ' + 'eeb1c5919e02c00');
-    headers = headers.append(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+
+    let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Access-Control-Allow-Origin', '*');
-    const body = new HttpParams().set('image', base64);
+    headers.append('Content-Type', 'multipart/form-data');
+
+    const body = new HttpParams().set('avatar', base64);
     return this.http.post(
-      `https://api.imgbb.com/1/upload?key=${'71e640dcf068ff0cdba57ddb8670945e'}`,
+      `https://upload.ngrok.io/upload-avatar`,
       body.toString(),
       {
         headers
       }
     );
+  }
+  getAll(): Observable<any> {
+    return this.http.get(`${environment.API_URL}/api/v1/allUsersSystem`);
   }
 }

@@ -2,6 +2,9 @@ import { Perfil } from './../models/genealModels.model';
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../services/requests.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -11,10 +14,16 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class PerfilComponent implements OnInit {
   perfil: Perfil;
   loadContent: boolean;
-  image: string;
   idUser: any;
   perfilStorage = new Perfil();
+  image: File;
+  resData: any;
+  selectedFile = null;
+  fileData: File = null;
+  imagens: any = [];
   constructor(
+    private router: Router,
+    private http: HttpClient,
     private serviceComp: RequestsService,
     private spinner: NgxSpinnerService
   ) {
@@ -28,13 +37,16 @@ export class PerfilComponent implements OnInit {
     this.loadContent = false;
     this.spinner.show();
     this.idUser = atob(id);
-    console.log('ID DO MANO', id);
+    // console.log('ID DO MANO', id);
     this.serviceComp.obterCadastro(this.idUser).subscribe(
       (perfil: any) => {
         this.spinner.show();
         this.perfil = perfil;
         this.loadContent = true;
-        console.log(this.perfil);
+        // console.log(this.perfil);
+        const matches = this.perfil.fotoAvatar.split('https');
+        // console.log('REGEX', matches);
+        this.imagens = matches;
         if (perfil !== undefined && perfil !== null) {
           setTimeout(() => {
             this.spinner.hide();
@@ -48,34 +60,8 @@ export class PerfilComponent implements OnInit {
       }
     );
   }
-  changeListener($event): void {
-    this.readThis($event.target);
-  }
-  readThis(inputValue: any): void {
-    let file: File = inputValue.files[0];
-    let myReader: FileReader = new FileReader();
-    myReader.onloadend = e => {
-      const base64Data = myReader.result;
-      const base64string = base64Data.toString();
-      const base64result = base64string.split(',')[1];
-      this.image = base64result;
-      console.log('Imagem upload', base64result);
-      this.uploadImg(this.image);
-    };
-    myReader.readAsDataURL(file);
-  }
-  uploadImg(b64: string) {
-    this.serviceComp.uploadImg(b64).subscribe(
-      data => {
-        console.log('IMAGEM', data);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
   attCadastro(): void {
-    console.log('TESTE', this.perfilStorage);
+    // console.log('TESTE', this.perfilStorage);
     this.serviceComp
       .atualizarCadastro(this.perfilStorage, this.idUser)
       .subscribe(
@@ -87,5 +73,57 @@ export class PerfilComponent implements OnInit {
           console.error(error);
         }
       );
+  }
+
+  inputFileChange(event) {
+    this.spinner.show();
+    if (event.target.files && event.target.files[0]) {
+      const foto = event.target.files[0];
+      const formData = new FormData();
+      formData.append('avatar', foto);
+      this.spinner.show();
+      this.http
+        .post('https://upload.ngrok.io/upload-avatar', formData)
+        .subscribe(
+          (data: any) => {
+            const urlApi = 'https://upload.ngrok.io/';
+            // console.log(data);
+            const dataFoto = `${urlApi}${data.data.name}`;
+            // console.log('Data foto', dataFoto);
+            const adicionaFoto = this.perfil.fotoAvatar + dataFoto;
+            this.perfil.fotoAvatar = adicionaFoto;
+            const newCad = new Perfil();
+            setTimeout(() => {
+              this.spinner.hide();
+            }, 4000);
+            newCad.fotoAvatar = adicionaFoto;
+            this.serviceComp.atualizarCadastro(newCad, this.idUser).subscribe(
+              (date: any) => {
+                setTimeout(() => {
+                  this.spinner.hide();
+                }, 4000);
+                // console.log('ATUALIZAção de foto', date);
+                this.populaPerfilVo();
+              },
+              error => {
+                setTimeout(() => {
+                  this.spinner.hide();
+                }, 4000);
+                console.error(error);
+              }
+            );
+          },
+          (error: any) => {
+            setTimeout(() => {
+              this.spinner.hide();
+            }, 4000);
+            console.error(error);
+          }
+        );
+    }
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 }

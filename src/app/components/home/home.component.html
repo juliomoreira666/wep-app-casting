@@ -1,0 +1,107 @@
+<!-- Navigation -->
+<div class="container-fluid m-0 p-0" id="home-principal">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            class="img-fluid logo-principal"
+            src="./../../../assets/img/logo-ritch.png"
+            alt="Ritchelly Casting"
+            title="Ritchelly Casting"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" [routerLink]="['/login']">
+              <a class="nav-link" href="#">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>Login</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/cadastro']" href="#"
+                >Cadastro</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Page Content -->
+
+  <div
+    class="container bg-white p-3 mt-3 overflow-auto h-10"
+    style="overflow: auto;
+  height: 450px;"
+  >
+    <h1 class="mt-4">Faça Parte cadastre-se</h1>
+    <div class="row">
+      <div
+        class="col-3 overflow-hidden h-50"
+        *ngFor="let all of all; let index = index"
+      >
+        <div
+          *ngIf="all.fotoAvatar.split('https://')[1] !== undefined"
+          style="background: white!important;"
+        >
+          <img
+            style="width: 100%;"
+            [src]="'https://' + all.fotoAvatar.split('https://')[1]"
+            class="img-fluid mx-auto"
+            alt="..."
+          />
+          <div class="">
+            <h5 class="mt-3">{{ all.nome }}</h5>
+            <p class="card-text text-justify textocv">
+              {{ all.curriculo }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container bg-white p-3 mt-3">
+    <h1 class="mt-4">Nossa Revista</h1>
+    <p>
+      <pdf-viewer
+        [src]="src"
+        [render-text]="true"
+        style="display: block;"
+      ></pdf-viewer>
+    </p>
+  </div>
+  <!-- Footer -->
+  <footer class="page-footer font-small blue bg-white fixed-bottom">
+    <!-- Copyright -->
+
+    <div class="text-center py-3">
+      <small class="py-3 text-center">Desenvolvimento e implementação:</small>
+      <img
+        class="img-fluid alfadur-img"
+        src="../../../assets/img/alfadur-logo.png"
+        alt="Alfadur"
+        title="Alfadur"
+      />
+    </div>
+    <div class="footer-copyright text-center py-3">
+      © 2019 Copyright:
+      <a href="http://ritchellycasting.com.br/"> Ritchelly Casting</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</div>
+
+<!-- /.container -->

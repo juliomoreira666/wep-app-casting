@@ -362,11 +362,29 @@ template {
 
 html,
 body {
-  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
   font-family: 'Numans', sans-serif;
+}
+
+body {
+  background-image: url('../src/assets/img/bgfundo.png');
+  background-size: initial;
+  height: 100% !important;
+}
+
+body:before {
+  content: '';
+  background: #00000091;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  width: 100%;
+  float: left;
+  z-index: -1;
+  height: 100vh;
+  position: fixed;
+  top: 0;
 }
 
 .container {

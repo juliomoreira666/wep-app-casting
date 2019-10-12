@@ -1,0 +1,18 @@
+#home-principal {
+  z-index: 99999;
+}
+
+.logo-principal {
+  width: 35%;
+}
+.alfadur-img {
+  width: 5%;
+}
+
+p.textocv {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 50px;
+}

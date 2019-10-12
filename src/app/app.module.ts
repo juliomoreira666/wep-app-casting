@@ -16,6 +16,10 @@ import { CadastroComponent } from '../app/components/cadastro/cadastro.component
 import { PerfilComponent } from './perfil/perfil.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { APP_BASE_HREF } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { HomeComponent } from './components/home/home.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,18 @@ import { APP_BASE_HREF } from '@angular/common';
     HeaderComponent,
     FooterComponent,
     CadastroComponent,
-    PerfilComponent
+    PerfilComponent,
+    HomeComponent
   ],
   imports: [
+    PdfViewerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
   providers: [HttpClient, { provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]
