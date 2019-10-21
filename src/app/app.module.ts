@@ -20,6 +20,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './components/home/home.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { AllUserComponent } from './components/all-user/all-user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,11 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     FooterComponent,
     CadastroComponent,
     PerfilComponent,
-    HomeComponent
+    HomeComponent,
+    AllUserComponent
   ],
   imports: [
+    NgxPaginationModule,
     PdfViewerModule,
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,185 @@
+<div class="row bg-white ml-0 mr-0 p-3">
+  <div class="container">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <h5 class="float-right">Total de cadastros: {{ allPerfil.length }}</h5>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div
+      class="mt-5 col-4 text-center"
+      *ngFor="
+        let p of allPerfil | paginate: { itemsPerPage: 12, currentPage: p }
+      "
+    >
+      <div style="background: white!important;">
+        <img
+          *ngIf="p.fotoAvatar.split('https://')[1] === undefined"
+          src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        />
+        <img
+          *ngIf="p.fotoAvatar.split('https://')[1] !== undefined"
+          style="width: 80%;"
+          [src]="'https://' + p.fotoAvatar.split('https://')[1]"
+          class="img-fluid mx-auto p-2"
+          [alt]="p.nome"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ p.nome }} {{ p.sobrenome }}</h5>
+          <p class="card-text">
+            {{ p.curriculo }}
+          </p>
+          <a
+            (click)="verModal(p)"
+            href="#"
+            class="btn btn-primary"
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#ModalLongoExemplo"
+            >Ver detalhes</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row bg-white mt-5 ml-0 mr-0 p-3">
+  <div class="container">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <h5 class="float-right">Total de cadastros: {{ allPerfil.length }}</h5>
+  </div>
+</div>
+<div
+  *ngIf="modalContent !== undefined"
+  class="modal fade"
+  id="ModalLongoExemplo"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="TituloModalLongoExemplo"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="TituloModalLongoExemplo">
+          {{ modalContent.nome }} {{ modalContent.sobrenome }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Fechar"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img
+          *ngIf="this.imagens.length === 1"
+          src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          class="avatar img-circle img-thumbnail"
+          alt="avatar"
+        />
+        <div class="col" *ngFor="let i of imagens | slice: 1">
+          <img
+            [attr.src]="'https' + i"
+            class="avatar img-circle img-thumbnail img-fluid"
+            alt="avatar"
+          />
+        </div>
+        <div class="col mt-4">
+          <h5>Caracteristicas:</h5>
+          <div class="col m-0 p-0">
+            <strong>Altura: </strong> {{ modalContent.altura }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Peso: </strong> {{ modalContent.peso }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Manequim: </strong> {{ modalContent.manequim }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Manequim: </strong> {{ modalContent.manequim }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Quadril: </strong> {{ modalContent.quadril }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Busto: </strong> {{ modalContent.busto }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Cintura: </strong> {{ modalContent.cintura }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Camisa:</strong> {{ modalContent.camisa }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Terno:</strong> {{ modalContent.terno }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Calçado:</strong> {{ modalContent.calcado }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Cor dos Olhos:</strong> {{ modalContent.corDosOlhos }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Cor da Pele:</strong> {{ modalContent.pele }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Cor do Cabelo:</strong> {{ modalContent.cordoCabelo }}
+          </div>
+
+          <div class="col m-0 p-0">
+            <strong>Tipo de Cabelo:</strong> {{ modalContent.tipoDeCabelo }}
+          </div>
+        </div>
+        <div class="col mt-4 mb-4">
+          <h5>Informações:</h5>
+          <div class="col m-0 p-0">
+            <strong>Email: </strong> {{ modalContent.email }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Telefone: </strong> {{ modalContent.telefone }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Celular: </strong> {{ modalContent.celular }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Instagran: </strong> {{ modalContent.instagram }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Youtube: </strong> {{ modalContent.youTube }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Site: </strong> {{ modalContent.site }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Endereço: </strong> {{ modalContent.endereco }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Cidade: </strong> {{ modalContent.cidade }}
+          </div>
+          <div class="col m-0 p-0">
+            <strong>Estado: </strong> {{ modalContent.estado }}
+          </div>
+        </div>
+        <div class="col mt-4 mb-4">
+          <div class="col m-0 p-0 text-justify">
+            <strong>Curriculum : </strong> {{ modalContent.curriculo }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
